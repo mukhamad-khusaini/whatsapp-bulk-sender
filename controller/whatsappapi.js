@@ -1,21 +1,9 @@
-const { Client, LocalAuth } = require("whatsapp-web.js");
-const qrcode = require("qrcode-terminal");
-const client = new Client({
-    authStrategy: new LocalAuth(),
-});
+const client = require("../model/client");
 
-client.on("qr", (qr) => {
-    qrcode.generate(qr, { small: true });
-});
+const routing = async (req, res, next) => {
+    await client.initialize();
 
-client.on("ready", () => {
-    console.log("Client is ready!");
-});
-
-client.initialize();
-
-const route = (req, res) => {
-    console.log(client);
+    res.render("main");
 };
 
-module.exports = route;
+module.exports = routing;

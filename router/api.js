@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const whatsappapi = require("../controller/whatsappapi");
+const routing = require("../controller/whatsappapi");
+const generating = require("../controller/chatsender");
 
-router.get("/", whatsappapi);
+router.get("/", routing);
+router.post("/chat", generating);
+
+module.exports = router;
